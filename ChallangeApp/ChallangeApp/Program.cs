@@ -1,8 +1,8 @@
 ﻿var name = "Adam";
-var sex = false;
+var isWoman = false;
 var age = 30;
 
-if (sex == true) //kobieta
+if (isWoman == true) //kobieta
 {
     if (age < 30)
     {

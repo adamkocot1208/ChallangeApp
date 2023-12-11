@@ -1,4 +1,4 @@
-﻿var name = "Kon";
+﻿var name = "Adam";
 var sex = false;
 var age = 30;
 
@@ -10,7 +10,7 @@ if (sex == true) //kobieta
     }
     else
     {
-        if (age == 33 && name =="Ewa")
+        if (age == 33 && name == "Ewa")
         {
             Console.WriteLine("Ewa, lat 33");
         }
@@ -30,5 +30,5 @@ else //mezczyzna
     else
     {
         Console.WriteLine("Pełnoletni Mężczyzna");
-            }
+    }
 }

@@ -1,34 +1,27 @@
-﻿var name = "Adam";
-var isWoman = false;
-var age = 30;
+﻿//Program zliczający liczbę cyfr w podanej liczbie
 
-if (isWoman == true) //kobieta
+Console.WriteLine("Podaj liczbę, którą chcesz sprawdzić: ");
+var number = Console.ReadLine();
+string numberStr = number.ToString();
+char[] letters = numberStr.ToArray();
+
+var count = 0;
+
+List<string> digits = new List<string>();
+for (int i = 0; i < 10; i++)
 {
-    if (age < 30)
-    {
-        Console.WriteLine("Kobieta poniżej 30 lat");
-    }
-    else
-    {
-        if (age == 33 && name == "Ewa")
-        {
-            Console.WriteLine("Ewa, lat 33");
-        }
-        else
-        {
-            Console.WriteLine("Kobieta w wieku 30 lat lub więcej");
-        }
-    }
-
+    digits.Add(i.ToString());
 }
-else //mezczyzna
+
+foreach (string digit in digits)
 {
-    if (age < 18)
+    foreach (char c in letters)
     {
-        Console.WriteLine("Niepełnoletni Mężczyzna");
+        if (c.ToString() == digit)
+        {
+            count++;
+        }
     }
-    else
-    {
-        Console.WriteLine("Pełnoletni Mężczyzna");
-    }
+    Console.WriteLine(digit + " => " + count.ToString());
+    count = 0;
 }

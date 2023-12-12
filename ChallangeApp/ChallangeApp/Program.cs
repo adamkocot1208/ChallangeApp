@@ -1,26 +1,62 @@
-﻿//Program zliczający liczbę cyfr w podanej liczbie
+﻿using ChallangeApp;
 
-Console.WriteLine("Podaj liczbę, którą chcesz sprawdzić: ");
-string number = Console.ReadLine();
-char[] letters = number.ToArray();
+var employee1 = new Employee("Paweł", "Zduński", 25);
+var employee2 = new Employee("Andrzej", "Budzyński", 38);
+var employee3 = new Employee("Lucjan", "Mostowiak", 45);
 
-int count = 0;
+employee1.AddRating(5);
+employee1.AddRating(4);
+employee1.AddRating(8);
+employee1.AddRating(2);
+employee1.AddRating(3);
 
-List<string> digits = new List<string>();
-for (int i = 0; i < 10; i++)
+employee2.AddRating(5);
+employee2.AddRating(4);
+employee2.AddRating(8);
+employee2.AddRating(3);
+employee2.AddRating(3);
+
+employee3.AddRating(2);
+employee3.AddRating(3);
+employee3.AddRating(5);
+employee3.AddRating(4);
+employee3.AddRating(3);
+
+List<Employee> company = new List<Employee>()
 {
-    digits.Add(i.ToString());
+    employee1, employee2, employee3
+};
+
+
+int maxRating = -1;
+List<Employee> bestEmployees = new List<Employee>();
+
+
+foreach (var employee in company)
+{
+    if (employee.TotalRating > maxRating)
+    {
+        maxRating = employee.TotalRating;
+        bestEmployees.Clear();
+        bestEmployees.Add(employee);
+    }
+    else if (employee.TotalRating == maxRating)
+    {
+        maxRating = employee.TotalRating;
+        bestEmployees.Add(employee);
+    }
 }
 
-foreach (string digit in digits)
+if (bestEmployees.Count > 1)
 {
-    foreach (char c in letters)
+    Console.WriteLine("Najwyższą ocenę w naszej firmie zdobyli: ");
+    foreach (var bestEmployee in bestEmployees)
     {
-        if (c.ToString() == digit)
-        {
-            count++;
-        }
+        Console.WriteLine(bestEmployee.Name + " " + bestEmployee.Surname + ", lat " + bestEmployee.Age);
     }
-    Console.WriteLine(digit + " => " + count.ToString());
-    count = 0;
+    Console.WriteLine("Ich wynik to: " + bestEmployees[0].TotalRating);
+}
+else if (bestEmployees.Count == 1)
+{
+    Console.WriteLine("Najwyższą ocenę w naszej firmie zdobył/a: " + bestEmployees[0].Name + " " + bestEmployees[0].Surname + ", lat " + bestEmployees[0].Age + ". Jej/jego wynik to: " + bestEmployees[0].TotalRating);
 }

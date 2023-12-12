@@ -1,11 +1,10 @@
 ﻿//Program zliczający liczbę cyfr w podanej liczbie
 
 Console.WriteLine("Podaj liczbę, którą chcesz sprawdzić: ");
-var number = Console.ReadLine();
-string numberStr = number.ToString();
-char[] letters = numberStr.ToArray();
+string number = Console.ReadLine();
+char[] letters = number.ToArray();
 
-var count = 0;
+int count = 0;
 
 List<string> digits = new List<string>();
 for (int i = 0; i < 10; i++)

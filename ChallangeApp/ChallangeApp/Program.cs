@@ -49,7 +49,7 @@ foreach (var employee in company)
 
 if (bestEmployees.Count > 1)
 {
-    Console.WriteLine("Najwyższą ocenę w naszej firmie zdobyli: ");
+    Console.WriteLine("Najwyższą ocenę zdobyli: ");
     foreach (var bestEmployee in bestEmployees)
     {
         Console.WriteLine(bestEmployee.Name + " " + bestEmployee.Surname + ", lat " + bestEmployee.Age);
@@ -58,5 +58,5 @@ if (bestEmployees.Count > 1)
 }
 else if (bestEmployees.Count == 1)
 {
-    Console.WriteLine("Najwyższą ocenę w naszej firmie zdobył/a: " + bestEmployees[0].Name + " " + bestEmployees[0].Surname + ", lat " + bestEmployees[0].Age + ". Jej/jego wynik to: " + bestEmployees[0].TotalRating);
+    Console.WriteLine("Najwyższą ocenę zdobył/a: " + bestEmployees[0].Name + " " + bestEmployees[0].Surname + ", lat " + bestEmployees[0].Age + ". Jej/jego wynik to: " + bestEmployees[0].TotalRating);
 }

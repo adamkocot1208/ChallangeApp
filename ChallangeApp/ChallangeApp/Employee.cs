@@ -30,6 +30,5 @@
             evaluation.Add(number);
         }
 
-
     }
 }

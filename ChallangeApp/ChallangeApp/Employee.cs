@@ -2,32 +2,40 @@
 {
     public class Employee
     {
-        private List<int> evaluation = new List<int>();
+        private List<float> evaluation = new List<float>();
 
         public Employee(string name, string surname, int age)
         {
             this.Name = name;
             this.Surname = surname;
-            this.Age = age;
         }
 
         public string Name { get; private set; }
 
         public string Surname { get; private set; }
 
-        public int Age { get; private set; }
-
-        public int TotalRating
+        public void AddRating(float number)
         {
-            get
-            {
-                return this.evaluation.Sum();
-            }
+            this.evaluation.Add(number);
         }
 
-        public void AddRating(int number)
+        public Statistics GetStatistics()
         {
-            evaluation.Add(number);
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var rating in this.evaluation)
+            {
+                statistics.Max = Math.Max(statistics.Max, rating);
+                statistics.Min = Math.Min(statistics.Min, rating);
+                statistics.Average += rating;
+            }
+
+            statistics.Average /= this.evaluation.Count;
+
+            return statistics;
         }
 
     }

@@ -3,45 +3,65 @@ namespace ChallangeApp.Tests
     public class Tests
     {
         [Test]
-        public void EmployeeCollectOnlyPositiveRatings_ShouldCorrectTotalRating()
+        public void TwoEmployeesNotEqual()
         {
+            var emp1 = GetEmployee("Pawe³", "Zduñski",19);
+            var emp2 = GetEmployee("Pawe³", "Zduñski",19);
 
-            var employee = new Employee("Pawe³", "Zduñski", 25);
+            Assert.AreNotEqual(emp1, emp2);
+        }
+
+        [Test]
+        public void NameOfTwoEmployeesEqual()
+        {
+            var emp1 = GetEmployee("Pawe³", "Zduñski", 19);
+            var emp2 = GetEmployee("Pawe³", "Zduñski", 19);
+
+            Assert.AreEqual(emp1.Name, emp2.Name);
+        }
+
+        [Test]
+        public void EmployeeCollectRatings_ShouldCorrectAverageRating()
+        {
+            var employee = new Employee("Pawe³", "Zduñski", 19);
+            employee.AddRating(5.50f);
+            employee.AddRating(4.50f);
+            employee.AddRating(5);
+
+            var statistics = employee.GetStatistics();
+
+            Assert.AreEqual(5, statistics.Average);
+        }
+
+        [Test]
+        public void EmployeeCollectRatings_ShouldCorrectMaxRating()
+        {
+            var employee = new Employee("Pawe³", "Zduñski", 19);
+            employee.AddRating(6.24f);
             employee.AddRating(7);
-            employee.AddRating(3);
-            employee.AddRating(8);
+            employee.AddRating(1.23f);
 
-            var result = employee.TotalRating;
+            var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(18, result);
+            Assert.AreEqual(7.00f, statistics.Max);
         }
 
         [Test]
-        public void EmployeeCollectOnlyNegativeRatings_ShouldCorrectTotalRating()
+        public void EmployeeCollectRatings_ShouldCorrectMinRating()
         {
-           
-            var employee = new Employee("Pawe³", "Zduñski", 25);
-            employee.AddRating(-7);
-            employee.AddRating(-3);
-            employee.AddRating(-5);
+            var employee = new Employee("Pawe³", "Zduñski", 19);
+            employee.AddRating(6.24f);
+            employee.AddRating(7);
+            employee.AddRating(1.23f);
 
-            var result = employee.TotalRating;
+            var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(-15, result);
+            Assert.AreEqual(1.23f, statistics.Min);
         }
 
-        [Test]
-        public void EmployeeCollectRatings_ShouldCorrectTotalRating()
+        private Employee GetEmployee(string name, string surname, int age)
         {
-     
-            var employee = new Employee("Pawe³", "Zduñski", 25);
-            employee.AddRating(9);
-            employee.AddRating(4);
-            employee.AddRating(-7);
-
-            var result = employee.TotalRating;
-
-            Assert.AreEqual(6, result);
+            return new Employee(name, surname, age);
         }
     }
 }

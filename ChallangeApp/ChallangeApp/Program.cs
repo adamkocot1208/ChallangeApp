@@ -1,62 +1,17 @@
 ﻿using ChallangeApp;
 
-var employee1 = new Employee("Paweł", "Zduński", 25);
-var employee2 = new Employee("Andrzej", "Budzyński", 38);
-var employee3 = new Employee("Lucjan", "Mostowiak", 45);
+var employee1 = new Employee("Paweł", "Zduński", 19);
 
-employee1.AddRating(5);
-employee1.AddRating(4);
-employee1.AddRating(8);
-employee1.AddRating(2);
-employee1.AddRating(3);
+Console.Write("Proszę podać ile ocen otrzymał dany pracownik: ");
+var numberString = Console.ReadLine();
+var success = int.TryParse(numberString, out var numberOfRatings);
 
-employee2.AddRating(5);
-employee2.AddRating(4);
-employee2.AddRating(8);
-employee2.AddRating(3);
-employee2.AddRating(3);
-
-employee3.AddRating(2);
-employee3.AddRating(3);
-employee3.AddRating(5);
-employee3.AddRating(4);
-employee3.AddRating(3);
-
-List<Employee> company = new List<Employee>()
+for (int i = 0; i< numberOfRatings; i++)
 {
-    employee1, employee2, employee3
-};
-
-
-int maxRating = -1;
-List<Employee> bestEmployees = new List<Employee>();
-
-
-foreach (var employee in company)
-{
-    if (employee.TotalRating > maxRating)
-    {
-        maxRating = employee.TotalRating;
-        bestEmployees.Clear();
-        bestEmployees.Add(employee);
-    }
-    else if (employee.TotalRating == maxRating)
-    {
-        maxRating = employee.TotalRating;
-        bestEmployees.Add(employee);
-    }
+    Console.Write($"Proszę wpisać {i+1}. ocenę: ");
 }
 
-if (bestEmployees.Count > 1)
-{
-    Console.WriteLine("Najwyższą ocenę zdobyli: ");
-    foreach (var bestEmployee in bestEmployees)
-    {
-        Console.WriteLine(bestEmployee.Name + " " + bestEmployee.Surname + ", lat " + bestEmployee.Age);
-    }
-    Console.WriteLine("Ich wynik to: " + bestEmployees[0].TotalRating);
-}
-else if (bestEmployees.Count == 1)
-{
-    Console.WriteLine("Najwyższą ocenę zdobył/a: " + bestEmployees[0].Name + " " + bestEmployees[0].Surname + ", lat " + bestEmployees[0].Age + ". Jej/jego wynik to: " + bestEmployees[0].TotalRating);
-}
+var statistics = employee1.GetStatistics();
+Console.WriteLine($"Minimal value: {statistics.Min:0.00}");
+Console.WriteLine($"Maximum value: {statistics.Max:0.00}");
+Console.WriteLine($"Average value: {statistics.Average:N3}");

@@ -16,7 +16,50 @@
 
         public void AddRating(float number)
         {
-            this.evaluation.Add(number);
+            if (number >= 0 && number <= 100)
+            {
+                this.evaluation.Add(number);
+            }
+            else
+            {
+                Console.WriteLine("Invalid rating value");
+            }
+        }
+
+        public void AddRating(string number)
+        {
+            if (float.TryParse(number, out float rating))
+            {
+                this.AddRating(rating);
+            }
+            else
+            {
+                Console.WriteLine("String is not a number value");
+            }
+        }
+
+        public void AddRating(char number)
+        {
+            string rating = number.ToString();
+            this.AddRating(rating);
+        }
+
+        public void AddRating(double number)
+        {
+            float rating = (float)number;
+            this.AddRating(rating);
+        }
+
+        public void AddRating(int number)
+        {
+            float rating = (float)number;
+            this.AddRating(rating);
+        }
+
+        public void AddRating(long number)
+        {
+            float rating = (float)number;
+            this.AddRating(rating);
         }
 
         public Statistics GetStatistics()

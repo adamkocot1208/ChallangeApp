@@ -65,6 +65,7 @@
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
+            statistics.Counter = 0;
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
@@ -73,6 +74,7 @@
             {
                 statistics.Max = Math.Max(statistics.Max, rating);
                 statistics.Min = Math.Min(statistics.Min, rating);
+                statistics.Counter += 1;
                 statistics.Average += rating;
             }
 

@@ -83,5 +83,95 @@
             return statistics;
         }
 
+        public Statistics GetStatisticsWithForEach()
+        {
+            var statistics = new Statistics();
+            statistics.Counter = 0;
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var rating in this.evaluation)
+            {
+                statistics.Max = Math.Max(statistics.Max, rating);
+                statistics.Min = Math.Min(statistics.Min, rating);
+                statistics.Counter += 1;
+                statistics.Average += rating;
+            }
+
+            statistics.Average /= this.evaluation.Count;
+
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithFor()
+        {
+            var statistics = new Statistics();
+            statistics.Counter = 0;
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+
+        for (int i = 0; i < this.evaluation.Count; i++)
+            {
+                statistics.Max = Math.Max(statistics.Max, this.evaluation[i]);
+                statistics.Min = Math.Min(statistics.Min, this.evaluation[i]);
+                statistics.Average += this.evaluation[i];
+            }
+
+            statistics.Average /= this.evaluation.Count;
+
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            var statistics = new Statistics();
+            statistics.Counter = 0;
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            var i = 0;
+
+            do
+            {
+                statistics.Max = Math.Max(statistics.Max, this.evaluation[i]);
+                statistics.Min = Math.Min(statistics.Min, this.evaluation[i]);
+                statistics.Counter += 1;
+                statistics.Average += this.evaluation[i];
+                i++;
+
+            } while (i <  this.evaluation.Count);
+
+            statistics.Average /= this.evaluation.Count;
+
+            return statistics;
+        }
+
+        public Statistics GetStatisticsWithWhile()
+        {
+            var statistics = new Statistics();
+            statistics.Counter = 0;
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            var indexer = 0;
+            while (indexer<this.evaluation.Count) 
+            {
+                statistics.Max = Math.Max(statistics.Max, this.evaluation[indexer]);
+                statistics.Min = Math.Min(statistics.Min, this.evaluation[indexer]);
+                statistics.Counter += 1;
+                statistics.Average += this.evaluation[indexer];
+                indexer++;
+            }
+
+            statistics.Average /= this.evaluation.Count;
+
+            return statistics;
+        }
+
     }
 }

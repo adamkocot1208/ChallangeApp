@@ -24,13 +24,14 @@ namespace ChallangeApp.Tests
         public void EmployeeCollectRatings_ShouldCorrectAverageRating()
         {
             var employee = new Employee("Pawe³", "Zduñski", 19);
-            employee.AddRating(5.50f);
-            employee.AddRating(4.50f);
-            employee.AddRating(5);
+            employee.AddRating(20);
+            employee.AddRating(25);
+            employee.AddRating(55);
+            employee.AddRating('A');
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(5, statistics.Average);
+            Assert.AreEqual(50, statistics.Average);
         }
 
         [Test]
@@ -40,23 +41,25 @@ namespace ChallangeApp.Tests
             employee.AddRating(6.24f);
             employee.AddRating(7);
             employee.AddRating(1.23f);
+            employee.AddRating('A');
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(7.00f, statistics.Max);
+            Assert.AreEqual(100, statistics.Max);
         }
 
         [Test]
         public void EmployeeCollectRatings_ShouldCorrectMinRating()
         {
             var employee = new Employee("Pawe³", "Zduñski", 19);
-            employee.AddRating(6.24f);
-            employee.AddRating(7);
-            employee.AddRating(1.23f);
+            employee.AddRating(62.4f);
+            employee.AddRating(70);
+            employee.AddRating(31.23f);
+            employee.AddRating('E');
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(1.23f, statistics.Min);
+            Assert.AreEqual(20, statistics.Min);
         }
 
         private Employee GetEmployee(string name, string surname, int age)

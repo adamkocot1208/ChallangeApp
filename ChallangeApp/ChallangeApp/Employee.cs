@@ -34,7 +34,32 @@
             }
             else
             {
-                Console.WriteLine("String is not a number value");
+                switch(number)
+                {
+                    case "A":
+                    case "a":
+                        this.AddRating(100);
+                        break;
+                    case "B":
+                    case "b":
+                        this.AddRating(80);
+                        break;
+                    case "C":
+                    case "c":
+                        this.AddRating(60);
+                        break;
+                    case "D":
+                    case "d":
+                        this.AddRating(40);
+                        break;
+                    case "E":
+                    case "e":
+                        this.AddRating(20);
+                        break;
+                    default:
+                        Console.WriteLine($"Letter '{number}' is not a grade.");
+                        break;
+                }
             }
         }
 
@@ -80,95 +105,24 @@
 
             statistics.Average /= this.evaluation.Count;
 
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithForEach()
-        {
-            var statistics = new Statistics();
-            statistics.Counter = 0;
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            foreach (var rating in this.evaluation)
+            switch (statistics.Average)
             {
-                statistics.Max = Math.Max(statistics.Max, rating);
-                statistics.Min = Math.Min(statistics.Min, rating);
-                statistics.Counter += 1;
-                statistics.Average += rating;
+                case var avg when avg >= 95:
+                    statistics.AverageString = 'A';
+                    break;
+                case var avg when avg >= 80:
+                    statistics.AverageString = 'B';
+                    break;
+                case var avg when avg >= 65:
+                    statistics.AverageString = 'C';
+                    break;
+                case var avg when avg >= 50:
+                    statistics.AverageString = 'D';
+                    break;
+                default:
+                    statistics.AverageString = 'E';
+                    break;
             }
-
-            statistics.Average /= this.evaluation.Count;
-
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithFor()
-        {
-            var statistics = new Statistics();
-            statistics.Counter = 0;
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-
-        for (int i = 0; i < this.evaluation.Count; i++)
-            {
-                statistics.Max = Math.Max(statistics.Max, this.evaluation[i]);
-                statistics.Min = Math.Min(statistics.Min, this.evaluation[i]);
-                statistics.Average += this.evaluation[i];
-            }
-
-            statistics.Average /= this.evaluation.Count;
-
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Counter = 0;
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            var i = 0;
-
-            do
-            {
-                statistics.Max = Math.Max(statistics.Max, this.evaluation[i]);
-                statistics.Min = Math.Min(statistics.Min, this.evaluation[i]);
-                statistics.Counter += 1;
-                statistics.Average += this.evaluation[i];
-                i++;
-
-            } while (i <  this.evaluation.Count);
-
-            statistics.Average /= this.evaluation.Count;
-
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Counter = 0;
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            var indexer = 0;
-            while (indexer<this.evaluation.Count) 
-            {
-                statistics.Max = Math.Max(statistics.Max, this.evaluation[indexer]);
-                statistics.Min = Math.Min(statistics.Min, this.evaluation[indexer]);
-                statistics.Counter += 1;
-                statistics.Average += this.evaluation[indexer];
-                indexer++;
-            }
-
-            statistics.Average /= this.evaluation.Count;
 
             return statistics;
         }

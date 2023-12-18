@@ -1,50 +1,39 @@
 ﻿using ChallangeApp;
 
-var employee1 = new Employee("Paweł", "Zduński", 19);
+Console.WriteLine("=== WELCOME TO THE EMPLOYEE EVALUATION PROGRAM ===");
+Console.WriteLine("==================================================");
+Console.WriteLine(" ");
 
-employee1.AddRating(3.5);
-employee1.AddRating(2);
-employee1.AddRating(5);
-employee1.AddRating(4);
-employee1.AddRating(1);
+Console.WriteLine("Enter the employee's name:");
+var name = Console.ReadLine();
+Console.WriteLine("Enter the employee's surname:");
+var surname = Console.ReadLine();
+Console.WriteLine("Enter the employee's age:");
+var ageStr = Console.ReadLine();
 
-var statistics1 = employee1.GetStatistics();
-var statistics2 = employee1.GetStatisticsWithForEach();
-var statistics3 = employee1.GetStatisticsWithFor();
-var statistics4 = employee1.GetStatisticsWithDoWhile();
-var statistics5 = employee1.GetStatisticsWithWhile();
+var age = int.Parse(ageStr);
+
+var employee1 = new Employee(name, surname, age);
+
+Console.WriteLine("==================================================");
+Console.WriteLine("Enter the employee's rating:");
+
+while (true)
+{
+    var input = Console.ReadLine();
+    if (input == "X" || input == "x")
+    {
+        break;
+    }
+    Console.WriteLine("Enter next rating or end the entry by pressing 'X'");
+    employee1.AddRating(input);
+}
+
+var statistics = employee1.GetStatistics();
 
 Console.WriteLine(" ");
-Console.WriteLine("Result of GetStatistics() method");
-Console.WriteLine($"There are {statistics1.Counter} correct numbers given");
-Console.WriteLine($"Minimal value: {statistics1.Min:0.00}");
-Console.WriteLine($"Maximum value: {statistics1.Max:0.00}");
-Console.WriteLine($"Average value: {statistics1.Average:N3}");
-
-Console.WriteLine(" ");
-Console.WriteLine("Result of GetStatisticsWithForEach() method");
-Console.WriteLine($"There are {statistics2.Counter} correct numbers given");
-Console.WriteLine($"Minimal value: {statistics2.Min:0.00}");
-Console.WriteLine($"Maximum value: {statistics2.Max:0.00}");
-Console.WriteLine($"Average value: {statistics2.Average:N3}");
-
-Console.WriteLine(" ");
-Console.WriteLine("Result of GetStatisticsWithFor() method");
-Console.WriteLine($"There are {statistics3.Counter} correct numbers given");
-Console.WriteLine($"Minimal value: {statistics3.Min:0.00}");
-Console.WriteLine($"Maximum value: {statistics3.Max:0.00}");
-Console.WriteLine($"Average value: {statistics3.Average:N3}");
-
-Console.WriteLine(" ");
-Console.WriteLine("Result of GetStatisticsWithDoWhile() method");
-Console.WriteLine($"There are {statistics4.Counter} correct numbers given");
-Console.WriteLine($"Minimal value: {statistics4.Min:0.00}");
-Console.WriteLine($"Maximum value: {statistics4.Max:0.00}");
-Console.WriteLine($"Average value: {statistics4.Average:N3}");
-
-Console.WriteLine(" ");
-Console.WriteLine("Result of GetStatisticsWithWhile() method");
-Console.WriteLine($"There are {statistics5.Counter} correct numbers given");
-Console.WriteLine($"Minimal value: {statistics5.Min:0.00}");
-Console.WriteLine($"Maximum value: {statistics5.Max:0.00}");
-Console.WriteLine($"Average value: {statistics5.Average:N3}");
+Console.WriteLine($"Statistics for {employee1.Name} {employee1.Surname}");
+Console.WriteLine($"There are {statistics.Counter} correct ratings given");
+Console.WriteLine($"Minimal value: {statistics.Min:0.00}");
+Console.WriteLine($"Maximum value: {statistics.Max:0.00}");
+Console.WriteLine($"Average value: {statistics.Average:N3}({statistics.AverageString})");

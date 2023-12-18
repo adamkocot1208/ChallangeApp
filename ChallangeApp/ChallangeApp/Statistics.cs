@@ -9,5 +9,7 @@
         public float Average { get; set; }
 
         public int Counter { get; set; }
+
+        public char AverageString { get; set; }
     }
 }

@@ -22,7 +22,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid rating value");
+                throw new Exception("Invalid rating value");
             }
         }
 
@@ -57,8 +57,7 @@
                         this.AddRating(20);
                         break;
                     default:
-                        Console.WriteLine($"Letter '{number}' is not a grade.");
-                        break;
+                        throw new Exception($"Unknown number: {number}");
                 }
             }
         }

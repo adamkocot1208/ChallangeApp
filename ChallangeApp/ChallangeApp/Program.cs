@@ -4,18 +4,8 @@ Console.WriteLine("=== WELCOME TO THE EMPLOYEE EVALUATION PROGRAM ===");
 Console.WriteLine("==================================================");
 Console.WriteLine(" ");
 
-Console.WriteLine("Enter the employee's name:");
-var name = Console.ReadLine();
-Console.WriteLine("Enter the employee's surname:");
-var surname = Console.ReadLine();
-Console.WriteLine("Enter the employee's age:");
-var ageStr = Console.ReadLine();
+var employee1 = new Employee("Paweł","Zduński",28);
 
-var age = int.Parse(ageStr);
-
-var employee1 = new Employee(name, surname, age);
-
-Console.WriteLine("==================================================");
 Console.WriteLine("Enter the employee's rating:");
 
 while (true)
@@ -25,8 +15,17 @@ while (true)
     {
         break;
     }
+
+    try
+    {
+        employee1.AddRating(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Wystąpił błąd : {ex.Message}");
+    }
+
     Console.WriteLine("Enter next rating or end the entry by pressing 'X'");
-    employee1.AddRating(input);
 }
 
 var statistics = employee1.GetStatistics();

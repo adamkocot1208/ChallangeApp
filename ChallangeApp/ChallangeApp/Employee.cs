@@ -1,18 +1,14 @@
 ﻿namespace ChallangeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> evaluation = new List<float>();
 
-        public Employee(string name, string surname, int age)
+        public Employee(string name, string surname, char sex)
+            : base(name, surname, sex)
         {
-            this.Name = name;
-            this.Surname = surname;
+     
         }
-
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
 
         public void AddRating(float number)
         {
@@ -34,7 +30,7 @@
             }
             else
             {
-                switch(number)
+                switch (number)
                 {
                     case "A":
                     case "a":

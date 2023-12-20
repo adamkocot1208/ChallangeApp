@@ -4,7 +4,7 @@ Console.WriteLine("=== WELCOME TO THE EMPLOYEE EVALUATION PROGRAM ===");
 Console.WriteLine("==================================================");
 Console.WriteLine(" ");
 
-var employee1 = new Employee("Paweł","Zduński",28);
+var employee1 = new Employee("Paweł","Zduński", 'M');
 
 Console.WriteLine("Enter the employee's rating:");
 

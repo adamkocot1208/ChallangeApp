@@ -33,8 +33,8 @@ namespace ChallangeApp.Tests
         [Test]
         public void TwoEmployeesNotEqual()
         {
-            var emp1 = GetEmployee("Paweł", "Zduński", 39);
-            var emp2 = GetEmployee("Paweł", "Kowalski", 25);
+            var emp1 = GetEmployee("Paweł", "Zduński", 'M');
+            var emp2 = GetEmployee("Paweł", "Kowalski", 'M');
 
             Assert.AreNotEqual(emp1, emp2);
         }
@@ -42,16 +42,16 @@ namespace ChallangeApp.Tests
         [Test]
         public void SurnameOfTwoEmployeesEqual()
         {
-            var emp1 = GetEmployee("Paweł", "Zduński", 39);
-            var emp2 = GetEmployee("Paweł", "Zduński", 25);
+            var emp1 = GetEmployee("Paweł", "Zduński", 'M');
+            var emp2 = GetEmployee("Paweł", "Zduński", 'M');
 
             Assert.AreEqual(emp1.Surname, emp2.Surname);
         }
 
 
-        private Employee GetEmployee(string name, string surname, int age)
+        private Employee GetEmployee(string name, string surname, char sex)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname, sex);
         }
     }
 

@@ -1,10 +1,10 @@
 ﻿namespace ChallangeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         private List<float> evaluation = new List<float>();
 
-        public Employee(string name, string surname, char sex)
+        public Supervisor(string name, string surname, char sex)
         {
             this.Name = name;
             this.Surname = surname;
@@ -28,36 +28,100 @@
 
         public void AddRating(string number)
         {
-            if (float.TryParse(number, out float rating))
-            {
-                this.AddRating(rating);
-            }
-            else
+            number = number.ToUpper();
+            if (number == "A" || number == "B" || number == "C" || number == "D" || number == "E")
             {
                 switch (number)
                 {
                     case "A":
-                    case "a":
                         this.AddRating(100);
                         break;
                     case "B":
-                    case "b":
                         this.AddRating(80);
                         break;
                     case "C":
-                    case "c":
                         this.AddRating(60);
                         break;
                     case "D":
-                    case "d":
                         this.AddRating(40);
                         break;
                     case "E":
-                    case "e":
                         this.AddRating(20);
                         break;
+                }
+            }
+            else if (!(number == "A" || number == "B" || number == "C" || number == "D" || number == "E"))
+            {
+                switch (number)
+                {
+                    case "6":
+                        this.AddRating(100);
+                        break;
+                    case "6-":
+                    case "-6":
+                        this.AddRating(95);
+                        break;
+                    case "5+":
+                    case "+5":
+                        this.AddRating(85);
+                        break;
+                    case "5":
+                        this.AddRating(80);
+                        break;
+                    case "5-":
+                    case "-5":
+                        this.AddRating(75);
+                        break;
+                    case "4+":
+                    case "+4":
+                        this.AddRating(65);
+                        break;
+                    case "4":
+                        this.AddRating(60);
+                        break;
+                    case "4-":
+                    case "-4":
+                        this.AddRating(55);
+                        break;
+                    case "3+":
+                    case "+3":
+                        this.AddRating(45);
+                        break;
+                    case "3":
+                        this.AddRating(40);
+                        break;
+                    case "3-":
+                    case "-3":
+                        this.AddRating(35);
+                        break;
+                    case "2+":
+                    case "+2":
+                        this.AddRating(25);
+                        break;
+                    case "2":
+                        this.AddRating(20);
+                        break;
+                    case "2-":
+                    case "-2":
+                        this.AddRating(15);
+                        break;
+                    case "1+":
+                    case "+1":
+                        this.AddRating(5);
+                        break;
+                    case "1":
+                        this.AddRating(0);
+                        break;
                     default:
-                        throw new Exception($"Unknown number: {number}");
+                        if (float.TryParse(number, out float rating))
+                        {
+                            this.AddRating(rating);
+                        }
+                        else
+                        {
+                            throw new Exception($"Unknown rating: {number}");
+                        }
+                        break;
                 }
             }
         }
@@ -125,6 +189,5 @@
 
             return statistics;
         }
-
     }
 }

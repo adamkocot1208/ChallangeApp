@@ -49,9 +49,9 @@ namespace ChallangeApp.Tests
         }
 
 
-        private Employee GetEmployee(string name, string surname, char sex)
+        private EmployeeInMemory GetEmployee(string name, string surname, char sex)
         {
-            return new Employee(name, surname, sex);
+            return new EmployeeInMemory(name, surname, sex);
         }
     }
 

@@ -4,7 +4,8 @@ Console.WriteLine("=== WELCOME TO THE EMPLOYEE EVALUATION PROGRAM ===");
 Console.WriteLine("==================================================");
 Console.WriteLine(" ");
 
-var emp1 = new EmployeeInFile("Paweł","Zduński", 'M');
+var emp1 = new EmployeeInMemory("Paweł","Zduński", 'M');
+emp1.RatingAdded += EmployeeRatingAdded;
 
 Console.WriteLine("Enter the employee's rating:");
 
@@ -36,3 +37,8 @@ Console.WriteLine($"There are {statistics.Counter} correct ratings given");
 Console.WriteLine($"Minimal value: {statistics.Min:0.00}");
 Console.WriteLine($"Maximum value: {statistics.Max:0.00}");
 Console.WriteLine($"Average value: {statistics.Average:N3}({statistics.AverageString})");
+
+void EmployeeRatingAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("New rating has been added :)");
+}

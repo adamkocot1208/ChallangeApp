@@ -2,13 +2,13 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public override event RatingAddedDelegate RatingAdded;
 
         private List<float> evaluation = new List<float>();
 
-        public EmployeeInMemory(string name, string surname, char sex) 
+        public EmployeeInMemory(string name, string surname, char sex)
             : base(name, surname, sex)
         {
-
         }
 
         public override void AddRating(float number)
@@ -16,6 +16,11 @@
             if (number >= 0 && number <= 100)
             {
                 this.evaluation.Add(number);
+
+                if(RatingAdded != null)
+                {
+                    RatingAdded(this, new EventArgs());
+                }
             }
             else
             {

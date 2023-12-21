@@ -4,6 +4,8 @@
     {
         private const string fileName = "ratings.txt";
 
+        public override event RatingAddedDelegate RatingAdded;
+
         public EmployeeInFile(string name, string surname, char sex)
             : base(name, surname, sex)
         {
@@ -17,6 +19,11 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(number);
+                }
+
+                if (RatingAdded != null)
+                {
+                    RatingAdded(this, new EventArgs());
                 }
             }
             else

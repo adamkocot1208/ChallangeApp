@@ -1,20 +1,17 @@
 ﻿namespace ChallangeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
+
         private List<float> evaluation = new List<float>();
 
-        public Employee(string name, string surname, char sex)
+        public EmployeeInMemory(string name, string surname, char sex) 
+            : base(name, surname, sex)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Sex = sex;
-        }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public char Sex { get; private set; }
 
-        public void AddRating(float number)
+        }
+
+        public override void AddRating(float number)
         {
             if (number >= 0 && number <= 100)
             {
@@ -26,7 +23,7 @@
             }
         }
 
-        public void AddRating(string number)
+        public override void AddRating(string number)
         {
             if (float.TryParse(number, out float rating))
             {
@@ -34,26 +31,22 @@
             }
             else
             {
+                number = number.ToUpper();
                 switch (number)
                 {
                     case "A":
-                    case "a":
                         this.AddRating(100);
                         break;
                     case "B":
-                    case "b":
                         this.AddRating(80);
                         break;
                     case "C":
-                    case "c":
                         this.AddRating(60);
                         break;
                     case "D":
-                    case "d":
                         this.AddRating(40);
                         break;
                     case "E":
-                    case "e":
                         this.AddRating(20);
                         break;
                     default:
@@ -62,31 +55,31 @@
             }
         }
 
-        public void AddRating(char number)
+        public override void AddRating(char number)
         {
             string rating = number.ToString();
             this.AddRating(rating);
         }
 
-        public void AddRating(double number)
+        public override void AddRating(double number)
         {
             float rating = (float)number;
             this.AddRating(rating);
         }
 
-        public void AddRating(int number)
+        public override void AddRating(int number)
         {
             float rating = (float)number;
             this.AddRating(rating);
         }
 
-        public void AddRating(long number)
+        public override void AddRating(long number)
         {
             float rating = (float)number;
             this.AddRating(rating);
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Counter = 0;

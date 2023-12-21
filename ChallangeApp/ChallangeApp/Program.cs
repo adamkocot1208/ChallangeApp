@@ -4,7 +4,7 @@ Console.WriteLine("=== WELCOME TO THE EMPLOYEE EVALUATION PROGRAM ===");
 Console.WriteLine("==================================================");
 Console.WriteLine(" ");
 
-var supervisor = new Supervisor("Paweł","Zduński", 'M');
+var emp1 = new EmployeeInFile("Paweł","Zduński", 'M');
 
 Console.WriteLine("Enter the employee's rating:");
 
@@ -18,7 +18,7 @@ while (true)
 
     try
     {
-        supervisor.AddRating(input);
+        emp1.AddRating(input);
     }
     catch (Exception ex)
     {
@@ -28,10 +28,10 @@ while (true)
     Console.WriteLine("Enter next rating or end the entry by pressing 'X'");
 }
 
-var statistics = supervisor.GetStatistics();
+var statistics = emp1.GetStatistics();
 
 Console.WriteLine(" ");
-Console.WriteLine($"Statistics for {supervisor.Name} {supervisor.Surname}");
+Console.WriteLine($"Statistics for {emp1.Name} {emp1.Surname}");
 Console.WriteLine($"There are {statistics.Counter} correct ratings given");
 Console.WriteLine($"Minimal value: {statistics.Min:0.00}");
 Console.WriteLine($"Maximum value: {statistics.Max:0.00}");

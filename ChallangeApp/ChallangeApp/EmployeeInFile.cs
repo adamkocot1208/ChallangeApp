@@ -91,6 +91,8 @@
 
         public override Statistics GetStatistics()
         {
+            var statistics = new Statistics();
+
             var ratings = new List<float>();
             if (File.Exists($"{fileName}"))
             {
@@ -106,39 +108,9 @@
                 }
             }
 
-            var statistics = new Statistics();
-            statistics.Counter = 0;
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
             foreach (var rating in ratings)
             {
-                statistics.Max = Math.Max(statistics.Max, rating);
-                statistics.Min = Math.Min(statistics.Min, rating);
-                statistics.Counter += 1;
-                statistics.Average += rating;
-            }
-
-            statistics.Average /= ratings.Count;
-
-            switch (statistics.Average)
-            {
-                case var avg when avg >= 95:
-                    statistics.AverageString = 'A';
-                    break;
-                case var avg when avg >= 80:
-                    statistics.AverageString = 'B';
-                    break;
-                case var avg when avg >= 65:
-                    statistics.AverageString = 'C';
-                    break;
-                case var avg when avg >= 50:
-                    statistics.AverageString = 'D';
-                    break;
-                default:
-                    statistics.AverageString = 'E';
-                    break;
+                statistics.AddRating(rating);
             }
 
             return statistics;
